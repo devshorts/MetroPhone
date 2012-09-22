@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="MetroPhone.ArrivalTimes"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:MetroPhone="clr-namespace:MetroPhone" mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <UserControl.Resources>
+        <MetroPhone:Formatter x:Key="Formatter"/>    
+    </UserControl.Resources>
+    
+    <Grid x:Name="LayoutRoot">
+<ListBox Name="Arrivals" Height="390" HorizontalAlignment="Left" VerticalAlignment="Top" Width="480" 
+                 ItemsSource="{Binding}" SelectionChanged="GetArrivals" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    
+                        <StackPanel Orientation="Vertical">
+                            
+                                <TextBlock
+                                HorizontalAlignment="Left"
+                                   Text="{Binding Path=Destination, Converter={StaticResource Formatter}, ConverterParameter='Destination: {0}'}"  
+                                   FontWeight="Bold" 
+                                    VerticalAlignment="Top"
+                                   Foreground="#FFFF18E1"  
+                                   FontSize="35"/>
+                        <TextBlock
+                                HorizontalAlignment="left"
+                                   Text="{Binding Path=Min, Converter={StaticResource Formatter}, ConverterParameter='Arriving in {0} minutes'}"  
+                                   FontWeight="Bold" 
+                                    VerticalAlignment="Top"
+                                   Foreground="white"  
+                                   FontSize="25"/>
+                        <TextBlock
+                                HorizontalAlignment="left"
+                                   Text="{Binding Path=Car, Converter={StaticResource Formatter}, ConverterParameter='Number of cars: {0}'}"  
+                                   FontWeight="Bold" 
+                                    VerticalAlignment="Top"
+                                   Foreground="white"  
+                                   FontSize="25"/>
+                        
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+    </ListBox>
+        <Button Content="Refresh" Height="72" HorizontalAlignment="Left" Margin="0,408,0,0" Name="button1" VerticalAlignment="Top" Width="160" Click="RefreshArrivals" BorderBrush="White" />
+    </Grid>
+</UserControl>
